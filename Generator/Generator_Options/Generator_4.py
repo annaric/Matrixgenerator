@@ -12,17 +12,16 @@ from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGener
 # (optional) Reducing upper and(/or) lower bandwith -> and: band matrix?
 
 class Generator4:
-    def __init__(self, size, density, pos_def, scale, distribution, cond, diagonal_option):
+    def __init__(self, size, density, pos_def, distribution, cond, diagonal_option):
         self.size = size
         self.density = density
         self.pos_def = pos_def
-        self.scale = scale
         self.distribution = distribution
         self.matrix = np.random.random((self.size, self.size))
         self.density_setter = DensitySetter(self.size, self.density)
         self.bandwidth_reducer = BandwidthReducer(self.size)
         cond = random.randint(1, 100)
-        self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, self.scale, diagonal_option, cond)
+        self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, diagonal_option, cond)
 
     def generate(self):
         # (optional) pre-/postmultiply by diagonalmatrices

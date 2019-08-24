@@ -12,16 +12,15 @@ from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGener
 # (optional) set density
 
 class Generator2:
-    def __init__(self, size, density, pos_def, scale, distribution, cond, diagonal_option):
+    def __init__(self, size, density, pos_def, distribution, cond, diagonal_option):
         self.size = size
         self.density = density
         self.pos_def = pos_def
-        self.scale = scale
         self.distribution = distribution
         self.density_setter = DensitySetter(self.size, self.density)
         self.bandwidth_reducer = BandwidthReducer(self.size)
         self.cond = cond
-        self.diagonal_generator = DiagonalGenerator(self.size, True, self.scale, random.randint(1, 6), 20)
+        self.diagonal_generator = DiagonalGenerator(self.size, True, diagonal_option, 20)
         self.matrix = np.zeros((self.size, self.size))
         self.s_matrix = np.random.random((self.size, self.size)) #np.zeros((self.size, self.size))
         self.generate_s()
@@ -79,5 +78,5 @@ class Generator2:
 
     def generate_s(self):
         matrix = np.random.random((self.size, self.size))
-        self.diagonal_generator = DiagonalGenerator(self.size, True, self.scale, random.randint(1, 6), 20)
+        self.diagonal_generator = DiagonalGenerator(self.size, True, random.randint(1, 6), 20)
         self.s_matrix = self.diagonal_generator.set_diagonal_entries(matrix)

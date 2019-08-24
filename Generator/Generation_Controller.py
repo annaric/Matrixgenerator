@@ -40,22 +40,22 @@ class GenerationController:
 
     def choose_generator(self):
         if self.generation_option == 1:
-            self.generator = Generator1(self.size, self.density, self.pos_def, self.scale, self.distribution,
+            self.generator = Generator1(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
         elif self.generation_option == 2:
-            self.generator = Generator2(self.size, self.density, self.pos_def, self.scale, self.distribution,
+            self.generator = Generator2(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
         elif self.generation_option == 3:
-            self.generator = Generator3(self.size, self.density, self.pos_def, self.scale, self.distribution,
+            self.generator = Generator3(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
         elif self.generation_option == 4:
-            self.generator = Generator4(self.size, self.density, self.pos_def, self.scale, self.distribution,
+            self.generator = Generator4(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
         elif self.generation_option == 5:
-            self.generator = Generator5(self.size, self.density, self.pos_def, self.scale, self.distribution,
+            self.generator = Generator5(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
         elif self.generation_option == 6:
-            self.generator = Generator6(self.size, self.density, self.pos_def, self.scale, self.distribution,
+            self.generator = Generator6(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
         else:
             raise Exception("NotImplementedException")
@@ -74,7 +74,7 @@ class GenerationController:
         print(self.matrix)
         # scipy greyscale pattern image
         #image = Image.fromarray(self.matrix)
-        matplotlib.pyplot.imshow(self.matrix)
+        #matplotlib.pyplot.imshow(self.matrix)
 
     def save2(self):
         # save in hdf5 file

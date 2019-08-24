@@ -49,7 +49,7 @@
 \section{Introduction}	
 %more introduction!!
 For the use case of generating matrices for training a neural network to classify, which solver is the best, it is not mandatory needed to generate a matrix with every tiny implementation option (e.g. generate Triangular upper or lower bandwidth) detailed chosen. 
-It is rather usefull to have many different matrices close to real world matrices. Because it was hard to find specific types of real world matrices, this generator is strongly oriented on LAPACK. LAPACK  offers a random matrix generator, that was developed to generate matrices to test large numerical linear algebra libraries. 
+It is rather usefull to have many different matrices close to real world matrices. Because it was hard to find specific types of real world matrices, this generator is strongly oriented on LAPACK \cite{LAPACK}. LAPACK  offers a random matrix generator, that was developed to generate matrices to test large numerical linear algebra libraries. 
 
 \section{LAPACK}
 LAPACK deals with the implementation of a suite of test matrix generators for testing linear algebra software. Their routines generate random matrices with certain properties which are useful for testing linear equation solving, least squares, and eigendecomposition software. These properties include the spectrum, symmetry, bandwidth, norm, sparsity, conditioning  (with respect to inversion or for the eigenproblem), type (real or complex), and storage scheme (dense, packed, or banded).
@@ -177,7 +177,7 @@ This generator is based on xLATMS:
 \begin{enumerate}
 	\item Set the diagonal of the matrix A to D, where the entries of D can be chosen as explained in chapter “Diagonal-entry options”. The entries of D will be the eigenvalues (and/or singular values) of the final matrix.
 	\item Pre- and postmultiply A by random orthogonal matrices (if A is real). If A is to be symmetric, then the premultiplying matrix is the transpose of the postmultiplying one. Otherwise, the pre- and postmultiplying matrices are chosen independently of one another.
-	\item Reduce A to have the desired bandwidth using Householder transformations.
+	\item Reduce A to have the desired bandwidth using Householder transformations \cite{numerikskript}.
 \end{enumerate}
 
 As it is usefull to save all matrices from different generators and different types in one hdf5 file, there will be no packing options available in this approach.
@@ -213,6 +213,7 @@ This generator is based on xLATMR:
 
 \subsubsection{Generator 5}
 This generator does just generate orthogonal matrices. 
+%more about how!!
 
 \subsubsection{Generator 6}
 This generator guarantees positive definite matrices.
@@ -232,6 +233,42 @@ Set random entries of A to zero with a given probability (e.g. density = 0,8 mea
 The generator also deals with the topic of side-diagonal matrices based on the problem of connectivity graphs, where it is
 
 \subsection{Householder function}
+
+\subsection{saving}
+
+\subsection{check components}
+
+\subsection{How to guaranty regularity in matrix generation?}
+
+\subsection{User Input}
+\begin{enumerate}
+	\item matrix size: int
+	\item density of the matrix: double [0, 1]
+	\item positive definite: Boolean
+	\item Distribution: 1-3
+	\item amount of matrices: int
+	\item storage location: String
+	\item diagonal option: int between 1 and 6
+	\item generation option: int between 1 and 6
+\end{enumerate}
+
+\newpage
+
+\section{References}
+\begin{thebibliography}{9}
+	\bibitem{LAPACK} 
+	James Demmel Alan McKenney. 
+	\textit{LAPACK Working Note 9 ATest Matrix Generation Suite}. 
+	
+	\bibitem{numerikskript} 
+	Marlis Hochbruck
+	\textit{Numerische Mathematik I und II WS 2018/19 – SS 2019}. (German)  
+	
+	\bibitem{stackoverflow} 
+	Answere 1
+	\\\texttt{https://stackoverflow.com/questions/38426349/how-to-create-random-orthonormal-matrix-in-python-numpy}
+\end{thebibliography}
+
 
 
 

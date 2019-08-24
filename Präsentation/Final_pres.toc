@@ -19,4 +19,9 @@
 \contentsline {subsubsection}{\numberline {3.2.6}Generator 6}{7}{subsubsection.3.2.6}% 
 \contentsline {subsection}{\numberline {3.3}Density setter}{7}{subsection.3.3}% 
 \contentsline {subsection}{\numberline {3.4}Side-diagonal matrix}{7}{subsection.3.4}% 
-\contentsline {subsection}{\numberline {3.5}Householder function}{7}{subsection.3.5}% 
+\contentsline {subsection}{\numberline {3.5}Householder function}{8}{subsection.3.5}% 
+\contentsline {subsection}{\numberline {3.6}saving}{8}{subsection.3.6}% 
+\contentsline {subsection}{\numberline {3.7}check components}{8}{subsection.3.7}% 
+\contentsline {subsection}{\numberline {3.8}How to guaranty regularity in matrix generation?}{8}{subsection.3.8}% 
+\contentsline {subsection}{\numberline {3.9}User Input}{8}{subsection.3.9}% 
+\contentsline {section}{\numberline {4}References}{9}{section.4}% 
