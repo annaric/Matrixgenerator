@@ -1,0 +1,199 @@
+\documentclass[parskip=full]{scrartcl}
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[german, english]{babel}  % german hyphenation, quotes, etc
+\usepackage{graphicx}       % provides commands for including figures
+\usepackage{rotating}		
+\graphicspath{ {images/} }
+\usepackage{hyperref}       % detailed hyperlink/pdf configuration
+\hypersetup{                % ‘texdoc hyperref‘ for options
+	pdftitle={Proseminar : Matrix generator},%
+	bookmarks=true
+}
+\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
+\usepackage[nonumberlist, acronym]{glossaries} % provides glossary commands
+\usepackage{enumitem}
+\usepackage{lscape}
+\usepackage{caption}
+\usepackage{placeins}
+
+
+\makenoidxglossaries
+\newglossaryentry{algorithm}
+{
+	name=algorithm,
+	plural=algorithms,
+	description={In mathematics and computer science, an algorithm is an unambiguous specification of how to solve a class of problems. Algorithms can perform calculation, data processing and automated reasoning tasks}
+}
+
+\begin{document}
+	
+	\begin{titlepage}
+		\centering
+		{\scshape\LARGE Karlsruher Institut für Technologie\par}
+		\vspace{1cm}
+		{\scshape\Large Final presentation\par}
+		\vspace{1.5cm}
+		{\huge\bfseries Automated test matrix generation\par}
+		\vspace {2cm}
+		
+		{\Large\itshape Anna Katharina Ricker\par}
+		
+		\vfill
+		Supervisors\par
+		Hartwig Anzt
+		Markus G\"{o}tz
+		
+		\vfill
+		{\large\today\par}
+	\end{titlepage}
+	
+	\tableofcontents
+	\newpage
+	
+\section{Introduction}	
+Hallo
+
+\section{Lapac}
+Lapac deals with the implementation of a suite of test matrix generators for testing linear algebra software. Their routines generate random matrices with certain properties which are useful for testing linear equation solving, least squares, and eigendecomposition software. These properties include the spectrum, symmetry, bandwidth, norm, sparsity, conditioning  (with respect to inversion or for the eigenproblem), type (real or complex), and storage scheme (dense, packed, or banded).
+The three main routines they have developed are called xLATMR, xLATMS and xLATME, where the first letter of each name (the `x') is either `S', `D', `C', or `Z'. 
+\begin{itemize}
+\item ‘S’ for single precision real (REAL)
+\item ‘D’ for double precision real (DOUBLE PRECISION)
+\item ‘C’ for single precision complex (COMPLEX)
+\item ‘Z’ for double precision complex (DOUBLE COMPLEX)
+\end{itemize}
+Since complex matrices would go beyond the scope of our work, I will focus myself on the Lapac-implementation of real matrices:
+
+\subsection{Distribution option in LAPAC}
+They use three different distributions:
+\begin{itemize}
+\item a uniform distribution on (0; 1)
+\item a uniform distribution on (1; 1)
+\item a normal distribution with mean zero and variance one (normal(0; 1))
+\end{itemize}
+
+\subsection{Diagonalentries options in LAPAC}
+To generate Diagonal entries, Lapac always uses one of the following options:
+\begin{itemize}
+	\item Input by the user.
+	\item D(1) = 1 and the other D(i)=1/COND, where COND >= 1 is a user input.
+	\item D(N)=1/COND and the other D(i) = 1. 
+	\item The D(i) form a geometric sequence from 1 to 1/COND. 
+	\item The D(i) form an arithmetic sequence from 1 to 1/COND
+	\item The D(i) are random in the range [1/COND; 1] with uniformly distributed logarithms. 
+	\item The D(i) are random with the same distribution as the other matrix entries.
+\end{itemize}
+In addition, each D(i) may optionally be multiplied by a random number with absolute value 1.
+
+\subsection{Packing options in LAPAC}
+The allowable options are: 
+\begin{itemize}
+\item no packing, 
+\item zeroing out the upper or lower half (if symmetric or Hermitian), 
+\item storing the upper or lower half columnwise (if symmetric, Hermitian or triangular), 
+\item using triangular band storage (upper half or lower half, and only if the matrix is symmetric, Hermitian or triangular), and full band storage.
+\end{itemize}
+
+\subsection{the different generators in LAPAC}
+\subsubsection{xLATMR}
+xLATMR generates a matrix with random off-diagonal entries and given diagonal entries. It is the simplest (and fastest) of the three routines in the suite, and permits no direct control over the eigenvalues or singular values of the generated matrix.
+
+\title hhigh level description:
+\begin{enumerate}
+\item Generate a matrix A with random entries with a distribution described before in distribution-options
+\item Set Diagonal of A to D where entries D are computed as explained before
+\item Grade A, if desired, by pre- and postmultiplying it by diagonal matrices DL and DR, respectively. 
+The entries of DL and DR are chosen just as the entries of D above
+\item Permute the rows and columns of A, if desired.
+\item Set random entries of A to zero, if desired, to get a matrix with a given fraction of zero entries.
+\item Make A a band matrix, if desired, by zeroing out its entries outside given upper and lower bandwidths.
+\item Scale A, if desired, to have a given maximum absolute entry.
+\item Pack A, if desired
+\end{enumerate}
+
+\subsubsection{xLATMS}
+xLATMS generates either a random real symmetric or complex Hermitian matrix with given eigenvalues and bandwidth, or a random nonsymmetric or complex symmetric matrix with given singular values and upper and lower bandwidth. 
+
+\title hhigh level description:
+\begin{enumerate}
+	\item Set the diagonal of the matrix A to D, where the entries of D can be chosen as explained in chapter “Diagonalentrie options”. 
+	The entries of D will be the eigenvalues (and/or singular values) of the final matrix.
+	\item Pre- and postmultiply A by random orthogonal matrices (if A is real). 
+	If A is to be symmetric, then the premultiplying matrix is the transpose of the postmultiplying one. 
+	Otherwise, the pre- and postmultipying matrices are chosen independently of one another.
+	\item Reduce A to have the desired bandwidth using Householder transformations.
+	\item Pack A, if desired with the described packing-options
+\end{enumerate}
+For non-banded and large-bandwidth matrices, the preceding description accurately describes the procedure actually followed. For small-bandwidth matrices, steps 2-4 are replaced by a method which uses Givens rotations to increase the bandwidth to the desired value, rather than generating a dense matrix and then reducing its bandwidth. Givens rotation method is used, if:
+\begin{itemize}
+	\item the matrix is symmetric and the bandwidth (KL or KU) is less than N/2,
+	\item the matrix is non-symmetric and KL + KU < 0,3(M + N) 
+\end{itemize}
+With KL being the lower bandwidth and KU the upper bandwidth.
+
+\subsubsection{xLATME}
+xLATME generates a random nonsymmetric matrix with given eigenvalues, either a given condition number for the eigenvalues or a given Jordan form (with certain restrictions), and a given one-sided bandwidth. Thus, for example, they can generate random Hessenberg matrices with given eigenvalues and sensitivities; this is useful for testing QR iteration algorithms for the nonsymmetric eigenproblem. Only dense storage is provided, since the nonsymmetric eigenroutines only work on matrices in dense storage format.
+
+\title hhigh level description:
+\begin{enumerate}
+	\item Set the diagonal of the matrix A to D, where the entries of D can be chosen as explained in chapter “Diagonal-entry options”.
+	\item If the user so specifies, the upper triangle of A is filled with random numbers, which are chosen with a distribution described before in distribution-options. 
+	This option may be used to partially control the Jordan form of A as follows: 
+	if A has any multiple eigenvalues and the upper triangle is filled in, then there will be exactly one Jordan block per distinct eigenvalue; such a matrix is called defective. 
+	If the upper triangle is not filled in, there will only be 1 by 1 blocks in the Jordan form, even if there are multiple eigenvalues; such a matrix is called derogatory.
+	%\item If the user so specifies, A is premultiplied by a random matrix S and postmultiplied by S^-1. Here S is a random dense nonsymmetric matrix whose singular values DS may be chosen as described in “Diagonalentrie-options”. This option may be used to control the condition of A’s eigenproblem as follows: if the upper triangle has not beed filled in, then the most sensitive eigenvalue of A will have sensitivity approximately equal to  
+	%\item Where sensitivity means that a perturbation of norm ε in A will cause a change an eigenvalue by a most approximately κ *ε [6, 2]. The approximation arises because the true sensitivity need only be within a factor N (the dimension of A) of the condition number of SX, where X is a diagonal matrix chosen so that the columns of SX have equal norm. In general, the columns of S will not differ too much in norm, so that the condition number of the eigenproblem may indeed be approximately controlled with this approach.
+	\item If the user so specifies, either the upper or lower bandwidth (but not both) is reduced to any positive value desired.
+	\item Scale A, if desired, to have a given maximum absolute entry
+\end{enumerate}
+
+\section{approach}
+For the use case of generating matrices for training a neural network to classify, which solver is the best, it is not mandatory needed to generate a matrix with every tiny implementation option (e.g. generate Triangular upper or lower bandwidth) detailed chosen. 
+It is rather usefull to have many different matrices close to real world matrices. Because it was hard to find specific types of real world matrices, this generator is strongly oriented on Lapac. Lapax offers a random matrix generator, that was developed to generate matrices to test large numerical linear algebra libraries. 
+The matrix generator should be easy to extend.  
+That worked with defining different generator options similar as the Lapac approach, which can be choosen by the user or random.
+Therefore I implemented 6 matrix-generators and 6 diagonal-entry generators.
+
+\subsection{matrix-generators}
+
+\subsubsection{Generator 1}
+This generator is defined as xLATMS: 
+
+\begin{itemize}
+	\item Set the diagonal of the matrix A to D, where the entries of D can be chosen as explained in chapter “Diagonal-entry options”. The entries of D will be the eigenvalues (and/or singular values) of the final matrix.
+	\item Pre- and postmultiply A by random orthogonal matrices (if A is real). If A is to be symmetric, then the premultiplying matrix is the transpose of the postmultiplying one. Otherwise, the pre- and postmultipying matrices are chosen independently of one another.
+	\item Reduce A to have the desired bandwidth using Householder transformations.
+\end{itemize}
+
+As it is usefull to save all matrices from different generators and different types in one hdf5 file, there will be no packing options available in this approach.
+To have an orthogonal matrix I can multiply matrix A with, I created Generator 6, that just creates orthogonal matrices. I thought it could be a good idea to have the possibility to just create a pure orthogonal matrix by its own.
+
+
+\subsubsection{Generator 2}
+
+
+
+\subsection{Density setter}
+First idea:
+\begin{itemize}
+	\item x = density * number of matrix entries
+	\item Set random entries of A to zero (x times)
+\end{itemize}
+Second idea:
+Set random entries of A to zero with a given probability (e.g. density = 0,8 means probability of 80%)
+
+
+\subsection{Side-diagonal matrix}
+I also dealt with the topic of side-diagonal matrices based on the problem of…..
+
+\subsection{Householder function]}
+
+
+
+
+
+\printnoidxglossaries
+
+\end{document}
+

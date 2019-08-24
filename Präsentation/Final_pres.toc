@@ -1,0 +1,17 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}% 
+\contentsline {section}{\numberline {2}Lapac}{3}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Distribution option in LAPAC}{3}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Diagonalentries options in LAPAC}{4}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Packing options in LAPAC}{4}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}the different generators in LAPAC}{5}{subsection.2.4}% 
+\contentsline {subsubsection}{\numberline {2.4.1}xLATMR}{5}{subsubsection.2.4.1}% 
+\contentsline {subsubsection}{\numberline {2.4.2}xLATMS}{5}{subsubsection.2.4.2}% 
+\contentsline {subsubsection}{\numberline {2.4.3}xLATME}{6}{subsubsection.2.4.3}% 
+\contentsline {section}{\numberline {3}approach}{7}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}matrix-generators}{7}{subsection.3.1}% 
+\contentsline {subsubsection}{\numberline {3.1.1}Generator 1}{7}{subsubsection.3.1.1}% 
+\contentsline {subsubsection}{\numberline {3.1.2}Generator 2}{8}{subsubsection.3.1.2}% 
+\contentsline {subsection}{\numberline {3.2}Density setter}{8}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Side-diagonal matrix}{8}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.4}Householder function]}{8}{subsection.3.4}% 
