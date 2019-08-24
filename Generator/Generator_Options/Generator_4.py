@@ -51,12 +51,12 @@ class Generator4:
         return self.matrix
 
     def premultiply(self):
-        mult_matrix = np.zeros(self.size, self.size)
+        mult_matrix = np.zeros((self.size, self.size))
         self.diagonal_generator.set_diagonal_entries(mult_matrix)
         self.matrix = np.matmul(mult_matrix, self.matrix)
 
     def post_multiply(self):
-        mult_matrix = np.zeros(self.size, self.size)
+        mult_matrix = np.zeros((self.size, self.size))
         self.diagonal_generator.set_diagonal_entries(mult_matrix)
         self.matrix = np.matmul(self.matrix, mult_matrix)
 

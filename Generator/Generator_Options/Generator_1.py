@@ -14,12 +14,13 @@ class Generator1:
         self.cond = cond
         self.diagonal_option = diagonal_option
         self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, diagonal_option, cond)
-        self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
+        self.matrix = self.diagonal_generator.set_diagonal_entries(np.zeros((self.size, self.size)))
 
-    def generate(self):
+    def generate(self) -> np.ndarray:
         self.premultiply()
         self.post_multiply()
         self.householder()
+        return self.matrix
 
     def premultiply(self):
         generator_5 = Generator5(self.size, self.density, self.pos_def,

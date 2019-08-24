@@ -9,5 +9,5 @@ class Generator:
         self.distribution = distribution
         self.matrix = np.zeros(self.size, self.size)
 
-    def generate(self):
+    def generate(self) -> np.ndarray:
         pass

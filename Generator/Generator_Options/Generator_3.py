@@ -17,17 +17,12 @@ class Generator3:
         self.cond = cond
         self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, diagonal_option, cond)
 
-    def generate(self):
-        self.set_diagonal()
-        for i in range(random.randint(0, 8)):
+    def generate(self) -> np.ndarray:
+        self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
+        for i in range(random.randint(1, 8)):
             self.distance = random.randint(1, self.size - 1)
             self.set_side_diagonal()
-        self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
         return self.matrix
-
-    def set_diagonal(self):
-        for i in range(self.size - 1):
-            self.matrix[i, i] = random.randint(1, 10000) / 10000
 
     def set_side_diagonal(self):
         for i in range(self.size - self.distance):

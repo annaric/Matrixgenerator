@@ -1,3 +1,5 @@
+import random
+
 import matplotlib as matplotlib
 import scipy as scip
 from Generator.Generator_Options.Generator_1 import Generator1
@@ -31,50 +33,56 @@ class GenerationController:
         self. cond = cond
         self.generator = None
         self.diagonal_option = diagonal_option
-        #self.diagonal_generator = DiagonalGenerator(size, pos_def, scale, diagonal_option, cond)
+        # self.diagonal_generator = DiagonalGenerator(size, pos_def, scale, diagonal_option, cond)
         self.matrix = None
 
     def start_generation(self):
-        self.choose_generator()
-        self.start_generator()
+        amount = self.amount
+        i = 0
+        while i < amount:
+            self.choose_generator()
+            self.matrix = self.generator.generate()
+            i = self.check_components(i)
+        print("Finishing matrix generation")
 
     def choose_generator(self):
-        if self.generation_option == 1:
+        generator = self.generation_option
+        if self.generation_option == 0:
+            generator = random.randint(1, 6)
+            print(generator)
+            print(self.diagonal_option)
+
+        if generator == 1:
             self.generator = Generator1(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
-        elif self.generation_option == 2:
+        elif generator == 2:
             self.generator = Generator2(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
-        elif self.generation_option == 3:
+        elif generator == 3:
             self.generator = Generator3(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
-        elif self.generation_option == 4:
+        elif generator == 4:
             self.generator = Generator4(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
-        elif self.generation_option == 5:
+        elif generator == 5:
             self.generator = Generator5(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
-        elif self.generation_option == 6:
+        elif generator == 6:
             self.generator = Generator6(self.size, self.density, self.pos_def, self.distribution,
                                         self.cond, self.diagonal_option)
         else:
             raise Exception("NotImplementedException")
 
     def start_generator(self):
-        amount = self.amount
-        i = 0
-        while i < amount:
-            self.matrix = self.generator.generate()
-            #self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
-            i = self.check_components(i)
-        print("Finishing matrix generation")
+           pass #self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
+
 
     def save(self):
         # save in hdf5 file
         print(self.matrix)
         # scipy greyscale pattern image
-        #image = Image.fromarray(self.matrix)
-        #matplotlib.pyplot.imshow(self.matrix)
+        # image = Image.fromarray(self.matrix)
+        # matplotlib.pyplot.imshow(self.matrix)
 
     def save2(self):
         # save in hdf5 file

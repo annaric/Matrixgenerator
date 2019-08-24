@@ -25,7 +25,7 @@ class Generator2:
         self.s_matrix = np.random.random((self.size, self.size)) #np.zeros((self.size, self.size))
         self.generate_s()
 
-    def generate(self):
+    def generate(self) -> np.ndarray:
         self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
         # Fill upper/lower Triangle
         rand = random.randint(0, 2)
@@ -51,6 +51,7 @@ class Generator2:
         rand = random.randint(0, 1)
         if rand == 0:
             self.matrix = self.density_setter.set_density(self.matrix)
+        return self.matrix
 
     def fill_upper_triangle(self):
         distance = 1
