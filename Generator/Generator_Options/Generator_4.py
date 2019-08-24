@@ -32,20 +32,16 @@ class Generator4:
         elif rand == 1:
             self.post_multiply()
         # (optional) Permute rows/columns
-        rand = 1 #random.randint(0, 2)
+        rand = random.randint(0, 2)
         if rand == 0:
-            print(self.matrix)
             self.permute_columns()
-            print(self.matrix)
         elif rand == 1:
-            print(self.matrix)
             self.permute_rows()
-            print(self.matrix)
         # (optional) set density
         rand = random.randint(0, 1)
         if rand == 0:
-            self.matrix =self.density_setter.set_density(self.matrix)
-        # (optional) Reducing upper and(/or) lower bandwith -> and: band matrix?
+            self.matrix = self.density_setter.set_density(self.matrix)
+        # (optional) Reducing upper and(/or) lower bandwidth -> and: band matrix?
         rand = random.randint(0, 2)
         if rand == 0:
             self.matrix = self.bandwidth_reducer.set_lower_bandwidth(self.matrix)

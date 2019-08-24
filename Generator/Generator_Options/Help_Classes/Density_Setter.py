@@ -15,3 +15,5 @@ class DensitySetter:
             y = random.randint(0, self.size - 1)
             matrix[x, y] = 0
         return matrix
+    # andere idee: die matrix stellen durchlaufen, wobei immer mit der density gearbeitet wird
+    # und man random eine anzahl von schritten weiter geht.

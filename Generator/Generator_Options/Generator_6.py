@@ -1,4 +1,5 @@
 import numpy as np
+import random
 from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGenerator
 
 
@@ -17,9 +18,10 @@ class Generator6:
 
     def generate(self):
         self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
-        help_matrix = np.random.random((self.size, self.size))
-        self.matrix = np.matmul(help_matrix, self.matrix)
-        help_matrix = np.linalg.inv(help_matrix)
-        self.matrix = np.matmul(self.matrix, help_matrix)
+        for i in range(random.randint(1, 10)):
+            help_matrix = np.random.random((self.size, self.size))
+            self.matrix = np.matmul(help_matrix, self.matrix)
+            help_matrix = np.linalg.inv(help_matrix)
+            self.matrix = np.matmul(self.matrix, help_matrix)
         return self.matrix
 
