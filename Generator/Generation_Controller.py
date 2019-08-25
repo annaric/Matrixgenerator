@@ -1,15 +1,14 @@
 import random
 
-import matplotlib as matplotlib
-import scipy as scip
 from Generator.Generator_Options.Generator_1 import Generator1
 from Generator.Generator_Options.Generator_2 import Generator2
 from Generator.Generator_Options.Generator_3 import Generator3
 from Generator.Generator_Options.Generator_4 import Generator4
 from Generator.Generator_Options.Generator_5 import Generator5
 from Generator.Generator_Options.Generator_6 import Generator6
-from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGenerator
+
 import numpy as np
+import matplotlib.pyplot as plt
 from numpy.linalg import det
 
 
@@ -28,7 +27,7 @@ class GenerationController:
         self.distribution = distribution
         # Option 1 to 6
         self.generation_option = generation_option
-        #boolean
+        # boolean
         self.symmetric = symmetric
         self. cond = cond
         self.generator = None
@@ -72,15 +71,10 @@ class GenerationController:
         else:
             raise Exception("NotImplementedException")
 
-    def start_generator(self):
-           pass # self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
-
     def save(self):
         # save in hdf5 file
         print(self.matrix)
-        # scipy greyscale pattern image
-        # image = Image.fromarray(self.matrix)
-        # matplotlib.pyplot.imshow(self.matrix)
+        self.show_matrix()
 
     def save2(self):
         # save in hdf5 file
@@ -104,6 +98,10 @@ class GenerationController:
         return i
 
     def check_pos_def(self):
-        value = True
-        #value = np.all(np.linalg.eigvals(self.matrix) > 0)
+        value = np.all(np.linalg.eigvals(self.matrix) > 0)
         return value
+
+    def show_matrix(self):
+        matrix = self.matrix
+        plt.spy(matrix)
+        plt.show()

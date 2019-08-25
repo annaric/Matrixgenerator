@@ -26,23 +26,23 @@ class Generator4:
 
     def generate(self):
         # (optional) pre-/postmultiply by diagonalmatrices
-        rand = random.randint(0, 2)
+        rand = random.randint(0, 1)
         if rand == 0:
             self.premultiply()
         elif rand == 1:
             self.post_multiply()
         # (optional) Permute rows/columns
-        rand = random.randint(0, 2)
+        rand = random.randint(0, 1)
         if rand == 0:
             self.permute_columns()
         elif rand == 1:
             self.permute_rows()
         # (optional) set density
-        rand = random.randint(0, 1)
+        rand = 0 #random.randint(0, 1)
         if rand == 0:
             self.matrix = self.density_setter.set_density(self.matrix)
         # (optional) Reducing upper and(/or) lower bandwidth -> and: band matrix?
-        rand = random.randint(0, 2)
+        rand = random.randint(0, 1)
         if rand == 0:
             self.matrix = self.bandwidth_reducer.set_lower_bandwidth(self.matrix)
         elif rand == 1:
