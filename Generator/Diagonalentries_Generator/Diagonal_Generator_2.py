@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class DiagonalGenerator2:
     def __init__(self, size, pos_def, cond):
         self.size = size

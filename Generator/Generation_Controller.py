@@ -15,8 +15,8 @@ from numpy.linalg import det
 
 class GenerationController:
 
-    def __init__(self, size, amount, density, pos_def, scale, distribution, cond, storage_location,
-                 generation_option, diagonal_option):
+    def __init__(self, size, amount, density, pos_def, distribution, cond, storage_location,
+                 generation_option, diagonal_option, symmetric):
         print("Your matrix will be generated, please wait...")
         self.size = size
         # value between 0 and 1
@@ -24,12 +24,12 @@ class GenerationController:
         self.storage_location = storage_location
         self.amount = amount
         self.pos_def = pos_def
-        # Option 1: (0,1) ; Option 2: (-1, 1)
-        self.scale = scale
-        # uniform or normal
+        # Option 1: (0,1) ; Option 2: (-1, 1); Option 3: normal
         self.distribution = distribution
         # Option 1 to 6
         self.generation_option = generation_option
+        #boolean
+        self.symmetric = symmetric
         self. cond = cond
         self.generator = None
         self.diagonal_option = diagonal_option
@@ -49,33 +49,31 @@ class GenerationController:
         generator = self.generation_option
         if self.generation_option == 0:
             generator = random.randint(1, 6)
-            print(generator)
-            print(self.diagonal_option)
+        print(generator)
 
         if generator == 1:
             self.generator = Generator1(self.size, self.density, self.pos_def, self.distribution,
-                                        self.cond, self.diagonal_option)
+                                        self.cond, self.diagonal_option, self.symmetric)
         elif generator == 2:
             self.generator = Generator2(self.size, self.density, self.pos_def, self.distribution,
-                                        self.cond, self.diagonal_option)
+                                        self.cond, self.diagonal_option, self.symmetric)
         elif generator == 3:
             self.generator = Generator3(self.size, self.density, self.pos_def, self.distribution,
-                                        self.cond, self.diagonal_option)
+                                        self.cond, self.diagonal_option, self.symmetric)
         elif generator == 4:
             self.generator = Generator4(self.size, self.density, self.pos_def, self.distribution,
-                                        self.cond, self.diagonal_option)
+                                        self.cond, self.diagonal_option, self.symmetric)
         elif generator == 5:
             self.generator = Generator5(self.size, self.density, self.pos_def, self.distribution,
-                                        self.cond, self.diagonal_option)
+                                        self.cond, self.diagonal_option, self.symmetric)
         elif generator == 6:
             self.generator = Generator6(self.size, self.density, self.pos_def, self.distribution,
-                                        self.cond, self.diagonal_option)
+                                        self.cond, self.diagonal_option, self.symmetric)
         else:
             raise Exception("NotImplementedException")
 
     def start_generator(self):
-           pass #self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
-
+           pass # self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
 
     def save(self):
         # save in hdf5 file

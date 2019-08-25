@@ -6,12 +6,13 @@ from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGener
 # implements orthogonal matrix
 class Generator6:
 
-    def __init__(self, size, density, pos_def, distribution, cond, diagonal_option):
+    def __init__(self, size, density, pos_def, distribution, cond, diagonal_option, symmetric):
         self.size = size
         self.density = density
         self.pos_def = pos_def
         self.distribution = distribution
         self.diagonal_option = diagonal_option
+        self.symmetric = symmetric
         self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, self.diagonal_option, cond)
         self.matrix = np.zeros((self.size, self.size))
 

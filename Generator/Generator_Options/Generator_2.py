@@ -4,6 +4,7 @@ import numpy as np
 from Generator.Generator_Options.Help_Classes.Density_Setter import DensitySetter
 from Generator.Generator_Options.Help_Classes.Bandwith_reducer import BandwidthReducer
 from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGenerator
+from Generator.Generator_Options.Help_Classes.Random_generator import RandomGenerator
 
 
 # (optional?) Fill upper/lower Triangle
@@ -12,7 +13,7 @@ from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGener
 # (optional) set density
 
 class Generator2:
-    def __init__(self, size, density, pos_def, distribution, cond, diagonal_option):
+    def __init__(self, size, density, pos_def, distribution, cond, diagonal_option, symmetric):
         self.size = size
         self.density = density
         self.pos_def = pos_def
@@ -20,10 +21,12 @@ class Generator2:
         self.density_setter = DensitySetter(self.size, self.density)
         self.bandwidth_reducer = BandwidthReducer(self.size)
         self.cond = cond
+        self.symmetric = symmetric
         self.diagonal_generator = DiagonalGenerator(self.size, True, diagonal_option, 20)
         self.matrix = np.zeros((self.size, self.size))
         self.s_matrix = np.random.random((self.size, self.size)) #np.zeros((self.size, self.size))
         self.generate_s()
+        self.random_generator = RandomGenerator()
 
     def generate(self) -> np.ndarray:
         self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
@@ -56,15 +59,19 @@ class Generator2:
     def fill_upper_triangle(self):
         distance = 1
         for i in range(self.size - 1):
+            array = self.random_generator.set_random(self.size - distance, self.distribution, False)
             for j in range(self.size - distance):
-                self.matrix[j, j + distance] = random.randint(0, 1000)/1000
+                self.matrix[j, j + distance] = array[j]
+                # random.randint(0, 1000)/1000
             distance = distance + 1
 
     def fill_lower_triangle(self):
         distance = 1
         for i in range(self.size - 1):
+            array = self.random_generator.set_random(self.size - distance, self.distribution, False)
             for j in range(self.size - distance):
-                self.matrix[j + distance, j] = random.randint(0, 1000) / 1000
+                self.matrix[j + distance, j] = array[j]
+                # random.randint(0, 1000) / 1000
             distance = distance + 1
 
     def premultiply(self):
