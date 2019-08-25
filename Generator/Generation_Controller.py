@@ -41,14 +41,17 @@ class GenerationController:
         while i < amount:
             self.choose_generator()
             self.matrix = self.generator.generate()
-            i = self.check_components(i)
+            if self.check_components(i):
+                self.save()
+                i = i + 1
+            else:
+                print("not regular matrix was generated")
         print("Finishing matrix generation")
 
     def choose_generator(self):
         generator = self.generation_option
         if self.generation_option == 0:
             generator = random.randint(1, 6)
-        print(generator)
 
         if generator == 1:
             self.generator = Generator1(self.size, self.density, self.pos_def, self.distribution,
@@ -83,23 +86,23 @@ class GenerationController:
     def check_components(self, i):
         if self.pos_def:
             if self.check_pos_def():
-                i = self.check_regularity(i)
+                return self.check_regularity()
+            else:
+                print("not positive definite matrix was generated")
+                return False
         else:
-            i = self.check_regularity(i)
-        return i
+            return self.check_regularity()
 
-    def check_regularity(self, i):
+    def check_regularity(self):
         np.seterr(all='ignore')
         if det(self.matrix) != 0:
-            self.save()
-            i = i + 1
+            return True
         else:
             print("not regular matrix was generated")
-        return i
+            return False
 
     def check_pos_def(self):
-        value = np.all(np.linalg.eigvals(self.matrix) > 0)
-        return value
+        return np.all(np.linalg.eigvals(self.matrix) > 0)
 
     def show_matrix(self):
         matrix = self.matrix

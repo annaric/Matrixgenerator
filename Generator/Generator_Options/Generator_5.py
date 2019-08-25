@@ -1,4 +1,6 @@
 import numpy as np
+import scipy.optimize
+
 from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGenerator
 
 
@@ -12,8 +14,13 @@ class Generator5:
         self.distribution = distribution
         self.symmetric = symmetric
         self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, diagonal_option, cond)
+        self.matrix = np.random.random((self.size, self.size))
 
     def generate(self):
+        self.matrix = scipy.linalg.orth(self.matrix)
+        return self.matrix
+
+    def generate2(self):
         dim = self.size
         random_state = np.random
         h = np.eye(dim)

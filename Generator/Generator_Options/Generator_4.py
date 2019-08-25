@@ -9,7 +9,7 @@ from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGener
 # (optional) pre/postmultiply by diagonalmatrices
 # (optional) Permute rows/colums
 # (optional) set density
-# (optional) Reducing upper and(/or) lower bandwith -> and: band matrix?
+# (optional) Reducing upper and(/or) lower bandwidth -> and: band matrix?
 
 class Generator4:
     def __init__(self, size, density, pos_def, distribution, cond, diagonal_option, symmetric):
@@ -32,13 +32,13 @@ class Generator4:
         elif rand == 1:
             self.post_multiply()
         # (optional) Permute rows/columns
-        rand = random.randint(0, 1)
+        rand = 0 #random.randint(0, 1)
         if rand == 0:
             self.permute_columns()
         elif rand == 1:
             self.permute_rows()
         # (optional) set density
-        rand = 0 #random.randint(0, 1)
+        rand = 0 # random.randint(0, 1)
         if rand == 0:
             self.matrix = self.density_setter.set_density(self.matrix)
         # (optional) Reducing upper and(/or) lower bandwidth -> and: band matrix?

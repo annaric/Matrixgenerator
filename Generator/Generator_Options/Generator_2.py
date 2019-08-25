@@ -9,7 +9,7 @@ from Generator.Generator_Options.Help_Classes.Random_generator import RandomGene
 
 # (optional?) Fill upper/lower Triangle
 # (optional) Pre/Postmultiply with S and S -1
-# (optional) Reducing upper OR lower bandwith
+# (optional) Reducing upper OR lower bandwidth
 # (optional) set density
 
 class Generator2:

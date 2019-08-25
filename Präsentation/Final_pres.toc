@@ -1,27 +1,26 @@
 \babel@toc {english}{}
-\contentsline {section}{\numberline {1}Introduction}{2}{section.1}% 
-\contentsline {section}{\numberline {2}LAPACK}{2}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}Distribution option in LAPACK}{2}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2}Diagonalentries options in LAPACK}{2}{subsection.2.2}% 
-\contentsline {subsection}{\numberline {2.3}Packing options in LAPACK}{3}{subsection.2.3}% 
-\contentsline {subsection}{\numberline {2.4}the different generators in LAPACK}{3}{subsection.2.4}% 
-\contentsline {subsubsection}{\numberline {2.4.1}xLATMR}{3}{subsubsection.2.4.1}% 
-\contentsline {subsubsection}{\numberline {2.4.2}xLATMS}{4}{subsubsection.2.4.2}% 
-\contentsline {subsubsection}{\numberline {2.4.3}xLATME}{4}{subsubsection.2.4.3}% 
-\contentsline {section}{\numberline {3}Automated test matrix generation}{5}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}diagonal generator}{5}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}matrix-generators}{6}{subsection.3.2}% 
-\contentsline {subsubsection}{\numberline {3.2.1}Generator 1}{6}{subsubsection.3.2.1}% 
-\contentsline {subsubsection}{\numberline {3.2.2}Generator 2}{6}{subsubsection.3.2.2}% 
-\contentsline {subsubsection}{\numberline {3.2.3}Generator 3}{6}{subsubsection.3.2.3}% 
-\contentsline {subsubsection}{\numberline {3.2.4}Generator 4}{7}{subsubsection.3.2.4}% 
-\contentsline {subsubsection}{\numberline {3.2.5}Generator 5}{7}{subsubsection.3.2.5}% 
-\contentsline {subsubsection}{\numberline {3.2.6}Generator 6}{7}{subsubsection.3.2.6}% 
-\contentsline {subsection}{\numberline {3.3}Density setter}{7}{subsection.3.3}% 
-\contentsline {subsection}{\numberline {3.4}Side-diagonal matrix}{7}{subsection.3.4}% 
-\contentsline {subsection}{\numberline {3.5}Householder function}{8}{subsection.3.5}% 
-\contentsline {subsection}{\numberline {3.6}saving}{8}{subsection.3.6}% 
-\contentsline {subsection}{\numberline {3.7}check components}{8}{subsection.3.7}% 
-\contentsline {subsection}{\numberline {3.8}How to guaranty regularity in matrix generation?}{8}{subsection.3.8}% 
-\contentsline {subsection}{\numberline {3.9}User Input}{8}{subsection.3.9}% 
-\contentsline {section}{\numberline {4}References}{9}{section.4}% 
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}% 
+\contentsline {section}{\numberline {2}LAPACK}{3}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Distribution option in LAPACK}{3}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Diagonalentries options in LAPACK}{4}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}Packing options in LAPACK}{4}{subsection.2.3}% 
+\contentsline {subsection}{\numberline {2.4}The different generators in LAPACK}{5}{subsection.2.4}% 
+\contentsline {subsubsection}{\numberline {2.4.1}xLATMR}{5}{subsubsection.2.4.1}% 
+\contentsline {subsubsection}{\numberline {2.4.2}xLATMS}{5}{subsubsection.2.4.2}% 
+\contentsline {subsubsection}{\numberline {2.4.3}xLATME}{6}{subsubsection.2.4.3}% 
+\contentsline {section}{\numberline {3}Automated test matrix generation}{7}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}diagonal generator}{7}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Matrix generators}{8}{subsection.3.2}% 
+\contentsline {subsubsection}{\numberline {3.2.1}Generator 1}{8}{subsubsection.3.2.1}% 
+\contentsline {subsubsection}{\numberline {3.2.2}Generator 2}{8}{subsubsection.3.2.2}% 
+\contentsline {subsubsection}{\numberline {3.2.3}Generator 3}{9}{subsubsection.3.2.3}% 
+\contentsline {subsubsection}{\numberline {3.2.4}Generator 4}{9}{subsubsection.3.2.4}% 
+\contentsline {subsubsection}{\numberline {3.2.5}Generator 5}{10}{subsubsection.3.2.5}% 
+\contentsline {subsubsection}{\numberline {3.2.6}Generator 6}{10}{subsubsection.3.2.6}% 
+\contentsline {subsection}{\numberline {3.3}Density setter}{10}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.4}Householder function}{10}{subsection.3.4}% 
+\contentsline {subsection}{\numberline {3.5}Regularity in matrix generation}{11}{subsection.3.5}% 
+\contentsline {subsection}{\numberline {3.6}Positive definite matrix}{11}{subsection.3.6}% 
+\contentsline {subsection}{\numberline {3.7}Random generator}{11}{subsection.3.7}% 
+\contentsline {subsection}{\numberline {3.8}User Input}{11}{subsection.3.8}% 
+\contentsline {section}{\numberline {4}References}{13}{section.4}% 

@@ -1,6 +1,7 @@
 import numpy as np
 from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGenerator
 from Generator.Generator_Options.Generator_5 import Generator5
+from Generator.Generator_Options.Help_Classes.Bandwith_reducer import BandwidthReducer
 from Generator.Generator_Options.Help_Classes.Householder_transformation import HouseholderTransformation
 
 
@@ -19,11 +20,15 @@ class Generator1:
         self.matrix = self.diagonal_generator.set_diagonal_entries(np.zeros((self.size, self.size)))
         self.orthogonal_matrix = None
         self.householder = HouseholderTransformation(self.size)
+        self.bandwidth_reducer = BandwidthReducer(self.size)
 
     def generate(self) -> np.ndarray:
         self.premultiply()
         self.post_multiply()
-        # self.bandwidth_transform()
+        #self.bandwidth_transform()
+        self.matrix = self.bandwidth_reducer.set_lower_bandwidth(self.matrix)
+        self.matrix = self.bandwidth_reducer.set_upper_bandwidth(self.matrix)
+
         return self.matrix
 
     def premultiply(self):
