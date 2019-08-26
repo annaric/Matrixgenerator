@@ -3,7 +3,7 @@ import random
 from Generator.Generation_Controller import GenerationController
 
 if __name__ == '__main__':
-    size = 2
+    size = 128
     # value between 0 and 1
     density = 0.8
     storage_location = "..."
@@ -12,7 +12,7 @@ if __name__ == '__main__':
     # Option 1: (0,1) ; Option 2: (-1, 1) ; Option 3: normal
     distribution = 1
     #condition number
-    cond = 10000
+    cond = 1000
     # Option 1 to 4
     generation_option = 5
     diagonal_option = 0

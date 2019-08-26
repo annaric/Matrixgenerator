@@ -6,6 +6,8 @@ from Generator.Generator_Options.Generator_3 import Generator3
 from Generator.Generator_Options.Generator_4 import Generator4
 from Generator.Generator_Options.Generator_5 import Generator5
 from Generator.Generator_Options.Generator_6 import Generator6
+from Generator.Generator_Options.Help_Classes.Density_Setter import DensitySetter
+from Generator.Diagonalentries_Generator.Diagonal_Generator import DiagonalGenerator
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,8 +34,9 @@ class GenerationController:
         self. cond = cond
         self.generator = None
         self.diagonal_option = diagonal_option
-        # self.diagonal_generator = DiagonalGenerator(size, pos_def, scale, diagonal_option, cond)
         self.matrix = None
+        self.density_setter = DensitySetter(self.size, self.density)
+        self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, self.diagonal_option, self.cond)
 
     def start_generation(self):
         amount = self.amount
@@ -41,6 +44,9 @@ class GenerationController:
         while i < amount:
             self.choose_generator()
             self.matrix = self.generator.generate()
+            self.matrix = self.density_setter.set_density(self.matrix)
+            self.matrix = self.density_setter.set_density(self.matrix)
+            self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)
             if self.check_components(i):
                 self.save()
                 i = i + 1

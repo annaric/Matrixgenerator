@@ -25,6 +25,7 @@ class Generator4:
         self.diagonal_generator = DiagonalGenerator(self.size, self.pos_def, diagonal_option, cond)
 
     def generate(self):
+        self.matrix = self.matrix = self.density_setter.set_density(self.matrix)
         # (optional) pre-/postmultiply by diagonalmatrices
         rand = random.randint(0, 1)
         if rand == 0:
@@ -42,10 +43,13 @@ class Generator4:
         if rand == 0:
             self.matrix = self.density_setter.set_density(self.matrix)
         # (optional) Reducing upper and(/or) lower bandwidth -> and: band matrix?
-        rand = random.randint(0, 1)
+        rand = random.randint(0, 2)
         if rand == 0:
             self.matrix = self.bandwidth_reducer.set_lower_bandwidth(self.matrix)
         elif rand == 1:
+            self.matrix = self.bandwidth_reducer.set_upper_bandwidth(self.matrix)
+        elif rand == 2:
+            self.matrix = self.bandwidth_reducer.set_lower_bandwidth(self.matrix)
             self.matrix = self.bandwidth_reducer.set_upper_bandwidth(self.matrix)
 
         self.matrix = self.diagonal_generator.set_diagonal_entries(self.matrix)

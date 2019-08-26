@@ -51,7 +51,7 @@ class Generator2:
             self.matrix = self.bandwidth_reducer.set_upper_bandwidth(self.matrix)
 
         # set density
-        rand = random.randint(0, 1)
+        rand = 0 #random.randint(0, 1)
         if rand == 0:
             self.matrix = self.density_setter.set_density(self.matrix)
         return self.matrix
