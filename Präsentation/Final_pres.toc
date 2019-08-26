@@ -21,6 +21,4 @@
 \contentsline {subsection}{\numberline {3.4}Householder function}{14}{subsection.3.4}% 
 \contentsline {subsection}{\numberline {3.5}Regularity in matrix generation}{14}{subsection.3.5}% 
 \contentsline {subsection}{\numberline {3.6}Positive definite matrix}{15}{subsection.3.6}% 
-\contentsline {subsection}{\numberline {3.7}Random generator}{15}{subsection.3.7}% 
-\contentsline {subsection}{\numberline {3.8}User Input}{15}{subsection.3.8}% 
-\contentsline {section}{\numberline {4}References}{16}{section.4}% 
+\contentsline {subsection}{\numberline {3.7}User Input}{15}{subsection.3.7}% 

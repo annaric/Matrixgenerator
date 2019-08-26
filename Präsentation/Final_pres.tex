@@ -48,7 +48,7 @@
 	
 \section{Introduction}	
 %more introduction!!
-For the use case of generating matrices for training a neural network  classifying the best solver, it is important to have a collection of matrices. When generating this matrices, it is not mandatory needed to generate a matrix with every tiny implementation option detailed chosen. 
+For the use case of generating matrices for training a neural network  classifying the best solver, it is important to have a large collection of matrices. When generating this matrices, it is not mandatory needed to generate a matrix with every tiny implementation option detailed chosen. 
 It is rather useful to have many different matrices close to matrices representing real world problems. Because it was hard to find specific types of real world matrices, this generator is strongly oriented on LAPACK \cite{LAPACK}. LAPACK offers a random matrix generator, that was developed to generate matrices to test large numerical linear algebra libraries. 
 
 \section{LAPACK}
@@ -67,7 +67,7 @@ Since complex matrices would go beyond the scope of what is needed for classific
 LAPACK uses three different distributions:
 \begin{itemize}
 \item a uniform distribution on (0; 1)
-\item a uniform distribution on (1; 1)
+\item a uniform distribution on (-1; 1)
 \item a normal distribution with mean zero and variance one (normal(0; 1))
 \end{itemize}
 
@@ -136,7 +136,7 @@ xLATME generates a random nonsymmetric matrix with given eigenvalues, either a g
 \begin{enumerate}
 	\item Set the diagonal of the matrix A to D, where the entries of D can be chosen as explained in chapter “Diagonal-entry options”.
 	
-	\item If the user so specifies, the upper triangle of A is filled with random numbers, which are chosen with a distribution described before in distribution options. 
+	\item If the user so specifies, the upper or lower triangle of A is filled with random numbers, which are chosen with a distribution described before in distribution options. 
 	This option may be used to partially control the Jordan form of A as follows: 
 	if A has any multiple eigenvalues and the upper triangle is filled in, then there will be exactly one Jordan block per distinct eigenvalue; such a matrix is called defective. 
 	If the upper triangle is not filled in, there will only be 1 by 1 blocks in the Jordan form, even if there are multiple eigenvalues; such a matrix is called derogatory.
@@ -184,6 +184,7 @@ This generator is based on xLATMS:
 	\item Set the diagonal of the matrix A to D, where the entries of D can be chosen as explained in chapter “Diagonal-entry options”. The entries of D will be the eigenvalues (and/or singular values) of the final matrix.
 	\item Pre- and postmultiply A by random orthogonal matrices (if A is real). If A is to be symmetric, then the premultiplying matrix is the transpose of the postmultiplying one. Otherwise, the pre- and postmultiplying matrices are chosen independently of one another.
 	\item Reduce A to have the desired bandwidth using Householder transformations \cite{numerikskript}.
+	\item If desired lower the density. This step is not part of xLATMS, but in case of classification it is more useful to have a matrix with low density. 
 \end{enumerate}
 
 As it is useful to save all matrices from different generators and different types in one hdf5 file, there will be no packing options available in this approach.
@@ -235,7 +236,7 @@ This generator is based on xLATMR:
 	\includegraphics[width=0.5\textwidth]{images/g5_dens_diag.PNG}
 \end{figure}
 This generator does just generate orthogonal matrices. 
-To generate an orthogonal matrix, the generator just creates a matrix with random value entries, that will in the next step be orthogonalised by Gram-Schmidt. Therefore the scipy library \cite{scipy} offers a function that constructs an orthonormal basis for the range of A using singular value decomposition of a matrix.
+To generate an orthogonal matrix, the generator just creates a matrix with random value entries, that will in the next step be orthogonalised by Gram-Schmidt. Therefore the scipy library \cite{scipy} offers a function that constructs an orthonormal basis for the range of A using singular value decomposition of a matrix. 
 
 \subsubsection{Generator 6}
 \begin{figure}[h!]
@@ -247,7 +248,7 @@ By filling the diagonal entries with only positive entries and premultiplying wi
 The multiplication result will be similar to the generated diagonal matrix which is positive definite. The multiplication by a matrix S and S\textsuperscript{-1} will be repeated 1 to 10 times randomly.
 
 \subsection{Density setter}
-First idea:
+To lower the density following steps will be made:
 \begin{itemize}
 	\item x = density * number of matrix entries
 	\item Set random entries of A to zero (x times)
@@ -256,8 +257,8 @@ To guarantee that the main diagonal entries will not be zero, the diagonal entri
 
 
 \subsection{Householder function}
-The implementation of the householder function for reducing the bandwidth is based on the pseudocode out of "A Framework for Symmetric Band Reduction". 
-Using QR decomposition different parts of matrix A is pre and postmultiplied by Q and Q\textsuperscript{T} multiple times.
+The implementation of the householder function for reducing the bandwidth is based on the pseudocode out of "A Framework for Symmetric Band Reduction"\cite{Householder}. 
+Using QR decomposition, different parts of matrix A are pre and postmultiplied by Q and Q\textsuperscript{T} multiple times.
 
 \subsection{Regularity in matrix generation}
 To use a matrix for training the neural network, the matrix has to be regular.
@@ -271,7 +272,7 @@ Even for matrices generated by generator 3 it is rather unlikely that a diagonal
 So the irregular matrices will just be sorted out.
 
 \subsection{Positive definite matrix}
-Analysing the trained neural network for classifying a matrix and looking at the different solver used for classification, brought up another interesting characteristic of a matrix for this use case: some of the matrix should be positive definite.
+Analysing the trained neural network for classifying a matrix and looking at the different solver used for classification, brought up another interesting characteristic of a matrix for this use case: a few matrix should be positive definite.
 Some solver work only or at least better on positive definite matrices. 
 That is why generator 6 was created. 
 The characteristic of a matrix being positive definite is similarity invariant. 
@@ -279,7 +280,7 @@ That means amongst other things, that premultiplying a positive definite matrix 
 So if the generator takes a diagonal matrix with just positive diagonal entries, the requirement, that the matrix is positive definite, is fulfilled.
 Following the matrix can be pre and postmultiplied by S and S\textsuperscript{-1} as much as wanted. 
 
-\subsection{Random generator}
+%\subsection{Random generator}
 
 \subsection{User Input}
 \begin{enumerate}
@@ -296,7 +297,6 @@ Following the matrix can be pre and postmultiplied by S and S\textsuperscript{-1
 
 \newpage
 
-\section{References}
 \begin{thebibliography}{9}
 	\bibitem{LAPACK} 
 	James Demmel Alan McKenney. 

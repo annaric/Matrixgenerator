@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a003c9f-c286-4ed5-90a5-8b7578c896a1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g1_dens.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g1_diag.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g1_diag2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g2_2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g2_diag.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g2_diag2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g2_diag3.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g3_diag.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g3_diag2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g4_diag_dens.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g4_diag_dens_2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g5_dens_diag.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g6.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/g6_dens_diag.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/generator1.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/generator1_2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/generator1_3.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/generator2_2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Präsentation/images/generator2_3.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/Generation_Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/Generation_Controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/Generator_Options/Generator_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/Generator_Options/Generator_2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/Generator_Options/Generator_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/Generator_Options/Generator_4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generator/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generator/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Präsentation/Final_pres.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Präsentation/Final_pres.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Präsentation/Final_pres.log" beforeDir="false" afterPath="$PROJECT_DIR$/Präsentation/Final_pres.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Präsentation/Final_pres.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Präsentation/Final_pres.pdf" afterDir="false" />
@@ -162,7 +138,7 @@
       <workItem from="1564668106654" duration="5414000" />
       <workItem from="1564843719640" duration="4987000" />
       <workItem from="1566549809694" duration="23949000" />
-      <workItem from="1566629507542" duration="46146000" />
+      <workItem from="1566629507542" duration="47341000" />
     </task>
     <task id="LOCAL-00001" summary="fixed problem in all generators">
       <created>1566684034672</created>
@@ -178,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566762849308</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="edited density, plotted images">
+      <created>1566779275854</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566779275854</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +182,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="fixed problem in all generators" />
     <MESSAGE value="added householder function" />
-    <option name="LAST_COMMIT_MESSAGE" value="added householder function" />
+    <MESSAGE value="edited density, plotted images" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited density, plotted images" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
